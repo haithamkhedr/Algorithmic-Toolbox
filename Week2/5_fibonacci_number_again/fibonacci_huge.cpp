@@ -17,7 +17,7 @@ unsigned long long get_fibonacci_huge_naive(long long n, long long m) {
 }
 
 unsigned long long fibonacci_mod_fast(long long n,long long m) {
-    // write your code here
+
     if(n <= 1)
         return n;
     unsigned long long prev = 0;
@@ -32,6 +32,7 @@ unsigned long long fibonacci_mod_fast(long long n,long long m) {
 
 long long get_fibonacci_huge_fast(long long n, long long m){
     
+    //find pisano period
     int period = 0;
     unsigned long long prev = 0;
     unsigned long long curr = 1;
