@@ -45,10 +45,10 @@ void test_solution() {
 }
 
 int main() {
-//    int n;
-//    std::cin >> n;
+    int n;
+    std::cin >> n;
 //    int c = get_fibonacci_last_digit_naive(n);
-//    int d = get_fibonacci_last_digit_fast(n);
-    test_solution();
-//    std::cout << c << '\n'<<d<<std::endl ;
+    int d = get_fibonacci_last_digit_fast(n);
+//    test_solution();
+    std::cout << d << '\n';
     }
