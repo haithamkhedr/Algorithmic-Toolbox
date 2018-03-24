@@ -28,7 +28,7 @@ long long lcm_fast(int a, int b){
     else{
         b = b / gcd_fast(b,a);
     }
-    return a*b;
+    return (long long)a*b;
 }
 
 int main() {
