@@ -13,7 +13,13 @@ struct Segment {
 template class std::vector<int>;
 template class std::vector<Segment>;
 bool compare(const Segment& s1, const Segment& s2){
-    return (s1.start < s2.start);
+    bool ret = false;
+    if(s1.start < s2.start)
+        ret = true;
+    else if(s1.start == s2.start && s1.end < s2.end){
+        ret = true;
+    }
+    return ret;
 }
 
 vector<int> optimal_points(vector<Segment> &segments) {
