@@ -16,7 +16,7 @@ bool compare(const Segment& s1, const Segment& s2){
     bool ret = false;
     if(s1.start < s2.start)
         ret = true;
-    else if(s1.start == s2.start && s1.end < s2.end){
+    else if( (s1.start == s2.start) && (s1.end < s2.end)){
         ret = true;
     }
     return ret;
@@ -26,15 +26,17 @@ vector<int> optimal_points(vector<Segment> &segments) {
     vector<int> points;
     //write your code here
     std::sort(segments.begin(), segments.end(), compare);
-    for (size_t i = 0; i < segments.size(); ++i) {
-        if(i !=0 && points.back() >= segments[i].start)
-            continue;
-        else if( (i != segments.size()-1) && (segments[i].end > segments[i+1].start) ){
-            points.push_back(std::min(segments[i].end, segments[i+1].end));
-            }
+    points.push_back(segments[0].end);
+    for (size_t i = 0; i < segments.size()-1; ++i) {
+        if(points.back() >= segments[i+1].start)
+            points.back() = std::min(points.back(), segments[i+1].end);
         else{
-            points.push_back(segments[i].end);
+            points.push_back(segments[i+1].end);
         }
+    }
+    //handle last segment
+    if(points.back() < segments.back().start){
+        points.push_back(segments.back().end);
     }
     return points ;
 }
