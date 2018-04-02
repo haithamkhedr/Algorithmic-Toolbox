@@ -23,7 +23,7 @@ vector<int> optimal_points(vector<Segment> &segments) {
     for (size_t i = 0; i < segments.size(); ++i) {
         if(i !=0 && points.back() >= segments[i].start)
             continue;
-        else if(segments[i].end > segments[i+1].start){
+        else if( (i != segments.size()-1) && (segments[i].end > segments[i+1].start) ){
             points.push_back(std::min(segments[i].end, segments[i+1].end));
             }
         else{
