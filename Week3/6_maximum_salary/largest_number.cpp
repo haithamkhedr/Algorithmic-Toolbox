@@ -7,14 +7,7 @@
 using std::vector;
 using std::string;
 bool compare(const string & a,const string &b){
-    bool ret = false;
-    if(a[0] > b[0]){
-        ret = true;
-    }
-    else if( a[0] == b[0] && a[0] > b[b.size() - 1] && a.length() <= b.length()){
-        ret = true;
-    }
-    return ret;
+    return (std::stoi(a + b) > std::stoi(b+a));
 }
 string largest_number(vector<string> a) {
   //write your code here
