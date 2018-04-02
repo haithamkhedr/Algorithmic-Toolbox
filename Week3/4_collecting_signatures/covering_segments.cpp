@@ -8,6 +8,9 @@ using std::vector;
 struct Segment {
   int start, end;
 };
+bool compare(const Segment& s1, const Segment& s2){
+    return (s1.start < s2.start);
+}
 
 vector<int> optimal_points(vector<Segment> &segments) {
   vector<int> points;
