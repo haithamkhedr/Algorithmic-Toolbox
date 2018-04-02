@@ -34,10 +34,6 @@ vector<int> optimal_points(vector<Segment> &segments) {
             points.push_back(segments[i+1].end);
         }
     }
-    //handle last segment
-    if(points.back() < segments.back().start){
-        points.push_back(segments.back().end);
-    }
     return points ;
 }
 
