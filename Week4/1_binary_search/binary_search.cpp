@@ -49,7 +49,7 @@ int main() {
   for (int i = 0; i < m; ++i) {
     //replace with the call to binary_search when implemented
     //std::cout << linear_search(a, b[i]) << ' ';
-      std::cout << binary_search_recursive(a, b[i],0,(int) (b.size() -1) ) << ' ';
+      std::cout << binary_search_recursive(a, b[i],0,(int) (a.size() -1) ) << ' ';
 
   }
 }
