@@ -28,11 +28,11 @@ std::pair<int, int> partition3(vector<int> &a, int l, int r) {
             swap(a[i], a[k++]);
         }
     }
-    int m1 =  partition2(a, l, r);
-    for (int i = l+1; i < l+k; ++i) {
-        swap(a[i],a[m1--]);
+    int m1 =  partition2(a,k-1, r);
+    for (int i = l; i < k-1; ++i) {
+        swap(a[i],a[--m1]);
     }
-    std::pair<int, int> ret(m1, m1 + k);
+    std::pair<int, int> ret(m1, m1+k-l-1);
     return ret;
 
 }
@@ -49,7 +49,7 @@ void randomized_quick_sort(vector<int> &a, int l, int r) {
   randomized_quick_sort(a, l, m.first - 1);
   randomized_quick_sort(a, m.second + 1, r);
 }
-#define TEST
+//#define TEST
 
 int main() {
 #ifdef TEST
