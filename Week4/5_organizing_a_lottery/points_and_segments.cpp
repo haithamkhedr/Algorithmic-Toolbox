@@ -5,10 +5,12 @@ using std::vector;
 
 #define SMALLER_THAN_OR_EQ 0
 #define LARGER_THAN_OR_EQ 1
-//template class std::vector<int>;
+template class std::vector<int>;
 void merge(vector<int>& arr, int left, int mid, int right){
     vector<int> arr_cp(arr.begin()+left, arr.begin() + right + 1);
-    size_t i=0, p1=0 ,p2=mid+1;
+    mid -= left;
+    right -= left;
+    size_t i= left, p1 = 0 ,p2 = mid + 1;
     while( (p1 <= mid) || (p2 <= right) ){
         if(p1 > mid){
             arr[i++] = arr_cp[p2++];
@@ -33,7 +35,7 @@ void merge_sort(vector<int>& arr, int left, int right){
     int mid = (left + right)/2 ;
     merge_sort(arr, left, mid);
     merge_sort(arr, mid+1, right);
-    merge(arr,left,mid,right);
+//    merge(arr,left,mid,right);
 }
 
 size_t binary_search_modified(const vector<int>& arr, int x, int left, int right, int mode){
@@ -64,13 +66,13 @@ size_t binary_search_modified(const vector<int>& arr, int x, int left, int right
 vector<int> fast_count_segments(vector<int> starts, vector<int> ends, vector<int> points) {
   vector<int> cnt(points.size());
   //write your code here
-    size_t  n = starts.size();
+    int  n = starts.size();
     merge_sort(starts,0,n-1);
     merge_sort(ends,0,n-1);
     for (int i = 0; i < cnt.size(); ++i) {
         int l = binary_search_modified(starts,points[i], 0, n-1, SMALLER_THAN_OR_EQ) + 1;
         int r = n - (binary_search_modified(ends,points[i], 0, n-1, LARGER_THAN_OR_EQ) + 1);
-        cnt[i] = (int)(l + r - n);
+        cnt[i] = (l + r - n);
     }
   return cnt;
 }
@@ -89,6 +91,7 @@ vector<int> naive_count_segments(vector<int> starts, vector<int> ends, vector<in
 //#define GEN_LARGE_INPUT
 
 int main() {
+    
 #ifdef TEST_SORT
     std::cout<<"Testing Merge sort"<<std::endl;
     vector<int> a = {5,2,10,1,3,6,12,4};
@@ -112,22 +115,26 @@ int main() {
     vector<int> points(m);
 
     for (size_t i = 0; i < starts.size(); i++) {
-        starts[i] = rand()% 100000000;
-        ends[i] = rand()% 100000000;
+        starts[i] = rand() % 100000000;
+        ends[i] = rand() % 100000000;
     }
     for (size_t i = 0; i < points.size(); i++) {
-        points[i] = rand()% 100000000;
+        points[i] = rand() % 100000000;
     }
     auto begin = std::clock();
     vector<int> cnt1 = naive_count_segments(starts, ends, points);
     auto diff = std::clock() - begin;
     std::cout<<std::endl<< (float)diff/CLOCKS_PER_SEC <<std::endl;
-
+//    for (size_t i = 0; i < cnt1.size(); i++) {
+//        std::cout << cnt1[i] << ' ';
+//    }
     begin = std::clock();
     vector<int> cnt2 = fast_count_segments(starts, ends, points);
     diff = std::clock() - begin;
     std::cout<<std::endl<< (float)diff/CLOCKS_PER_SEC<<std::endl;
-
+    for (size_t i = 0; i < cnt2.size(); i++) {
+        std::cout << cnt2[i] << ' ';
+    }
 #else
   int n, m;
   std::cin >> n >> m;
