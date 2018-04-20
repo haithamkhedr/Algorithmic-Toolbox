@@ -35,7 +35,7 @@ void merge_sort(vector<int>& arr, int left, int right){
     int mid = (left + right)/2 ;
     merge_sort(arr, left, mid);
     merge_sort(arr, mid+1, right);
-//    merge(arr,left,mid,right);
+    merge(arr,left,mid,right);
 }
 
 size_t binary_search_modified(const vector<int>& arr, int x, int left, int right, int mode){
