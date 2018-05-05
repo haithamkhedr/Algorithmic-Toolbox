@@ -22,7 +22,7 @@ long long eval(long long a, long long b, char op) {
 void minMaxValue(vector< vector<long long> > & minValues, vector< vector<long long> > & maxValues, const vector<char> &op, int start, int end){
     
     long long min  = 1000000000;
-    long long max = 0;
+    long long max = -1000000000;
     for (int i = start; i < end; ++i) {
         
         long long m1 = eval(maxValues[start][i] , maxValues[i+1][end] ,op[i]);
